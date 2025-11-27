@@ -137,7 +137,7 @@
             <!-- Indikator Tugas (Sticky) -->
             <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
                 <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
-                    TUGAS 1
+                    Agenda 1
                 </div>
             </div>
         </header>
@@ -149,12 +149,12 @@
                 <div class="text-center mb-8 mt-4">
                     <!-- Status Banner -->
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
-                        ✓ APPROVED (VIEW ONLY)
+                        ✓ APPROVED
                     </div>
 
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
                     <div class="max-w-md mx-auto px-4">
-                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20% - 50%</h2>
+                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20%</h2>
                         <p id="agenda-desc" class="text-xs md:text-sm font-medium leading-relaxed text-gray-900 italic">
                             The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.
                         </p>
@@ -242,12 +242,12 @@
     <script>
         let currentLang = 'id'; 
         const translations = {
-            en: { task: "TASK", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Reselect", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next TASK...", selectBtn: "Select" },
-            id: { task: "TUGAS", desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.", back: "Pilih Ulang", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke TUGAS berikutnya...", selectBtn: "Pilih" },
-            my: { task: "TUGASAN", desc: "Kurasi House merangkumi wangian mewah untuk lelaki dan wanita, serta set hadiah kecantikan pereka.", back: "Pilih Semula", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke TUGASAN seterusnya...", selectBtn: "Pilih" },
-            ru: { task: "ЗАДАЧА", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей ЗАДАЧЕ...", selectBtn: "Выбрать" },
-            de: { task: "AUFGABE", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AUFGABE...", selectBtn: "Auswählen" },
-            nl: { task: "TAAK", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende TAAK...", selectBtn: "Selecteer" }
+            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
+            id: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
+            my: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
+            ru: { task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать" },
+            de: { task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen" },
+            nl: { task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer" }
         };
 
         window.onload = function() { checkSession(); };
@@ -312,10 +312,10 @@
 
         const database = {
             1: [ { name: "Gucci Half Horsebit Mini", price: 100000, img: img1 }, { name: "Gucci Flora Orchid Set", price: 300000, img: img2 }, { name: "GG Emblem Nano Bucket", price: 550000, img: img3 }, { name: "Ophidia Boston Bag", price: 890000, img: img4, recommended: true } ],
-            2: [ { name: "Gucci Signature Belt", price: 1500000, img: img5 }, { name: "Ophidia GG Card Case", price: 2100000, img: img1 }, { name: "Gucci Savoy Duffle Mini", price: 2800000, img: img3 }, { name: "GG Retro Sunglasses", price: 3500000, img: img4, recommended: true } ],
-            3: [ { name: "Ace Embroidered Sneaker", price: 5500000, img: img3 }, { name: "Gucci Diana Mini Tote", price: 6200000, img: img4 }, { name: "Jackie 1961 Shoulder Bag", price: 7800000, img: img1 }, { name: "Dionysus Small Bag", price: 9000000, img: img5, recommended: true } ],
-            4: [ { name: "Gucci Bamboo 1947", price: 12500000, img: img4 }, { name: "Attache Large Shoulder", price: 15000000, img: img2 }, { name: "Gucci Horsebit 1955", price: 18500000, img: img5 }, { name: "Exotic Leather Tote", price: 22000000, img: img1, recommended: true } ],
-            5: [ { name: "Gold Chain Necklace", price: 45000000, img: img2 }, { name: "Diamond Watch Series", price: 65000000, img: img5 }, { name: "Crocodile Horsebit Bag", price: 85000000, img: img3 }, { name: "Gucci High Jewelry Set", price: 120000000, img: img4, recommended: true } ]
+            2: [ { name: "Gucci Signature Belt", price: 440000, img: img5 }, { name: "Ophidia GG Card Case", price: 828000, img: img1 }, { name: "Gucci Savoy Duffle Mini", price: 1500000, img: img3 }, { name: "GG Retro Sunglasses", price: 2100000, img: img4, recommended: true } ],
+            3: [ { name: "Ace Embroidered Sneaker", price: 980000, img: img3 }, { name: "Gucci Diana Mini Tote", price: 1350000, img: img4 }, { name: "Jackie 1961 Shoulder Bag", price: 2550000, img: img1 }, { name: "Dionysus Small Bag", price: 5880000, img: img5, recommended: true } ],
+            4: [ { name: "Gucci Bamboo 1947", price: 1980000, img: img4 }, { name: "Attache Large Shoulder", price: 2350000, img: img2 }, { name: "Gucci Horsebit 1955", price: 3738000, img: img5 }, { name: "Exotic Leather Tote", price: 5880000, img: img1, recommended: true } ],
+            5: [ { name: "Gold Chain Necklace", price: 5237000, img: img2 }, { name: "Diamond Watch Series", price: 5999000, img: img5 }, { name: "Crocodile Horsebit Bag", price: 7546000, img: img3 }, { name: "Gucci High Jewelry Set", price: 10468000, img: img4, recommended: true } ]
         };
 
         function formatRupiah(num) { return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
@@ -356,7 +356,7 @@
             
             document.getElementById('agenda-title').innerText = `AGENDA ${level}`;
             document.getElementById('level-indicator').innerText = `${t.task} ${level}`;
-            document.getElementById('benefit-title').innerText = "BENEFIT 20% - 50%";
+            document.getElementById('benefit-title').innerText = "BENEFIT 20%";
             document.getElementById('agenda-desc').innerText = t.desc;
             
             const banner = document.getElementById('read-only-banner');
@@ -436,7 +436,7 @@
         }
 
         function confirmAndProgress() {
-            const phoneNumber = "628123456789"; 
+            const phoneNumber = "6285371931874"; 
             const t = translations[currentLang];
             const user = document.getElementById('display-username').innerText;
             const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
