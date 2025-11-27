@@ -367,7 +367,7 @@
 
             grid.innerHTML = '';
             items.forEach((item, index) => {
-                const benefitPercent = item.recommended ? 0.5 : 0.2;
+                const benefitPercent = item.recommended ? 0.5 : 0.25;
                 const profitAmount = Math.floor(item.price * (1 + benefitPercent));
                 
                 const buttonDisplay = isReadOnly ? 'hidden' : '';
