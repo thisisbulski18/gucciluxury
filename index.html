@@ -33,15 +33,14 @@
         
         .menu-overlay { background-color: rgba(255,255,255,0.98); }
         
-        /* User Dropdown */
         .user-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
             background: white;
             border: 1px solid #e5e7eb;
-            padding: 20px;
-            min-width: 200px;
+            padding: 15px;
+            min-width: 180px;
             display: none;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             z-index: 50;
@@ -89,9 +88,9 @@
     <!-- ================= MAIN APP ================= -->
     <div id="main-app" class="hidden flex flex-col min-h-screen">
         
-        <!-- HEADER (SESUAI FORMAT GAMBAR) -->
+        <!-- HEADER -->
         <header class="bg-white sticky top-0 z-40 border-b border-gray-100">
-            <div class="flex items-center justify-between px-4 py-5 md:px-8 relative bg-white">
+            <div class="flex items-center justify-between px-4 py-6 md:px-8 relative bg-white">
                 
                 <!-- 1. LOGO (KIRI) -->
                 <div class="text-3xl md:text-4xl font-serif font-bold text-black tracking-[0.1em] cursor-default select-none text-gucci-gold-dark">
@@ -117,9 +116,8 @@
                         <button onclick="toggleUserMenu()" class="hover:opacity-60 transition-opacity pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         </button>
-                        <!-- User Menu Dropdown (Hidden by default) -->
                         <div id="user-menu-dropdown" class="user-dropdown">
-                            <div class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">Logged in as</div>
+                            <div class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">Account</div>
                             <div class="text-sm font-bold mb-4 truncate text-gucci-gold" id="display-username">USER</div>
                             <div class="border-t border-gray-100 my-2"></div>
                             <button onclick="logout()" class="w-full text-left text-[10px] font-bold uppercase tracking-widest text-red-600 hover:text-red-800">LOGOUT</button>
@@ -134,7 +132,7 @@
                 </div>
             </div>
             
-            <!-- Indikator Agenda (Sticky) -->
+            <!-- Indikator Agenda -->
             <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
                 <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
                     AGENDA 1
@@ -147,7 +145,6 @@
             <!-- VIEW: DAFTAR PRODUK -->
             <div id="product-list-view" class="animate-fadeIn">
                 <div class="text-center mb-8 mt-4">
-                    <!-- Status Banner -->
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
                         ✓ APPROVED (VIEW ONLY)
                     </div>
@@ -242,9 +239,9 @@
     <script>
         let currentLang = 'id'; 
         const translations = {
-            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Reselect", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
-            id: { task: "AGENDA", desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.", back: "Pilih Ulang", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
-            my: { task: "AGENDA", desc: "Kurasi House merangkumi wangian mewah untuk lelaki dan wanita, serta set hadiah kecantikan pereka.", back: "Pilih Semula", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
+            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
+            id: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
+            my: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
             ru: { task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать" },
             de: { task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen" },
             nl: { task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer" }
@@ -441,9 +438,14 @@
             const user = document.getElementById('display-username').innerText;
             const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            
             currentLevel++;
             localStorage.setItem('gucci_level', currentLevel);
-            setTimeout(() => { alert(t.alertConf); loadLevel(currentLevel, false); }, 1000);
+            
+            // REMOVED ALERT: Directly load next level after delay
+            setTimeout(() => { 
+                loadLevel(currentLevel, false); 
+            }, 500);
         }
 
         function showCompletionScreen() {
