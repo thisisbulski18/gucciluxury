@@ -33,7 +33,6 @@
         
         .menu-overlay { background-color: rgba(255,255,255,0.98); }
         
-        /* User Dropdown */
         .user-dropdown {
             position: absolute;
             top: 100%;
@@ -89,7 +88,7 @@
     <!-- ================= MAIN APP ================= -->
     <div id="main-app" class="hidden flex flex-col min-h-screen">
         
-        <!-- HEADER (SESUAI GAMBAR) -->
+        <!-- HEADER -->
         <header class="bg-white sticky top-0 z-40 border-b border-gray-100">
             <div class="flex items-center justify-between px-4 py-6 md:px-8 relative bg-white">
                 
@@ -133,6 +132,11 @@
 
                 </div>
             </div>
+            
+            <!-- Indikator Agenda (Sticky) -->
+            <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
+                <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
+                    AGENDA 1
                 </div>
             </div>
         </header>
@@ -149,7 +153,7 @@
 
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
                     <div class="max-w-md mx-auto px-4">
-                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20%</h2>
+                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20% - 50%</h2>
                         <p id="agenda-desc" class="text-xs md:text-sm font-medium leading-relaxed text-gray-900 italic">
                             The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.
                         </p>
@@ -237,12 +241,12 @@
     <script>
         let currentLang = 'id'; 
         const translations = {
-            en: { task: "TASK", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next TASK...", selectBtn: "Select" },
-            id: { task: "TUGAS", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke TUGAS berikutnya...", selectBtn: "Pilih" },
-            my: { task: "TUGASAN", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Pilih Semula", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke TUGASAN seterusnya...", selectBtn: "Pilih" },
-            ru: { task: "ЗАДАЧА", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей ЗАДАЧЕ...", selectBtn: "Выбрать" },
-            de: { task: "AUFGABE", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AUFGABE...", selectBtn: "Auswählen" },
-            nl: { task: "TAAK", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende TAAK...", selectBtn: "Selecteer" }
+            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
+            id: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
+            my: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
+            ru: { task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать" },
+            de: { task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen" },
+            nl: { task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer" }
         };
 
         window.onload = function() { checkSession(); };
