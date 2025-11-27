@@ -453,7 +453,12 @@
             const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
             currentLevel++;
-            setTimeout(() => { alert(t.alertConf); loadLevel(currentLevel); }, 1000);
+            // Alert tetap dalam bahasa masing-masing, HANYA deskripsi di halaman depan yang Inggris
+            setTimeout(() => { 
+                // Kita hilangkan alert() ini sesuai permintaan Anda sebelumnya agar tidak popup
+                // alert(t.alertConf); 
+                loadLevel(currentLevel); 
+            }, 1000);
         }
 
         function showCompletionScreen() {
