@@ -40,8 +40,8 @@
             right: 0;
             background: white;
             border: 1px solid #e5e7eb;
-            padding: 15px;
-            min-width: 180px;
+            padding: 20px;
+            min-width: 200px;
             display: none;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             z-index: 50;
@@ -89,9 +89,9 @@
     <!-- ================= MAIN APP ================= -->
     <div id="main-app" class="hidden flex flex-col min-h-screen">
         
-        <!-- HEADER (SESUAI GAMBAR) -->
+        <!-- HEADER (SESUAI FORMAT GAMBAR) -->
         <header class="bg-white sticky top-0 z-40 border-b border-gray-100">
-            <div class="flex items-center justify-between px-4 py-6 md:px-8 relative bg-white">
+            <div class="flex items-center justify-between px-4 py-5 md:px-8 relative bg-white">
                 
                 <!-- 1. LOGO (KIRI) -->
                 <div class="text-3xl md:text-4xl font-serif font-bold text-black tracking-[0.1em] cursor-default select-none text-gucci-gold-dark">
@@ -117,9 +117,9 @@
                         <button onclick="toggleUserMenu()" class="hover:opacity-60 transition-opacity pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         </button>
-                        <!-- User Menu Dropdown -->
+                        <!-- User Menu Dropdown (Hidden by default) -->
                         <div id="user-menu-dropdown" class="user-dropdown">
-                            <div class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">Account</div>
+                            <div class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">Logged in as</div>
                             <div class="text-sm font-bold mb-4 truncate text-gucci-gold" id="display-username">USER</div>
                             <div class="border-t border-gray-100 my-2"></div>
                             <button onclick="logout()" class="w-full text-left text-[10px] font-bold uppercase tracking-widest text-red-600 hover:text-red-800">LOGOUT</button>
@@ -134,10 +134,10 @@
                 </div>
             </div>
             
-            <!-- Indikator Tugas (Sticky) -->
+            <!-- Indikator Agenda (Sticky) -->
             <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
                 <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
-                    Agenda 1
+                    AGENDA 1
                 </div>
             </div>
         </header>
@@ -149,12 +149,12 @@
                 <div class="text-center mb-8 mt-4">
                     <!-- Status Banner -->
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
-                        ✓ APPROVED
+                        ✓ APPROVED (VIEW ONLY)
                     </div>
 
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
                     <div class="max-w-md mx-auto px-4">
-                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20%</h2>
+                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20% - 50%</h2>
                         <p id="agenda-desc" class="text-xs md:text-sm font-medium leading-relaxed text-gray-900 italic">
                             The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.
                         </p>
@@ -242,9 +242,9 @@
     <script>
         let currentLang = 'id'; 
         const translations = {
-            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
-            id: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
-            my: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
+            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Reselect", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
+            id: { task: "AGENDA", desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.", back: "Pilih Ulang", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
+            my: { task: "AGENDA", desc: "Kurasi House merangkumi wangian mewah untuk lelaki dan wanita, serta set hadiah kecantikan pereka.", back: "Pilih Semula", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
             ru: { task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать" },
             de: { task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen" },
             nl: { task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer" }
@@ -356,7 +356,7 @@
             
             document.getElementById('agenda-title').innerText = `AGENDA ${level}`;
             document.getElementById('level-indicator').innerText = `${t.task} ${level}`;
-            document.getElementById('benefit-title').innerText = "BENEFIT 20%";
+            document.getElementById('benefit-title').innerText = "BENEFIT 20% - 50%";
             document.getElementById('agenda-desc').innerText = t.desc;
             
             const banner = document.getElementById('read-only-banner');
