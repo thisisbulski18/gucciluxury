@@ -24,6 +24,10 @@
         .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
         .hidden { display: none !important; }
         
+        .auth-bg {
+            background-color: #000; /* Fallback color jika video belum load */
+        }
+        
         .menu-overlay { background-color: rgba(255,255,255,0.98); }
         
         .user-dropdown {
@@ -43,27 +47,26 @@
 </head>
 <body class="bg-white font-sans text-black selection:bg-gray-200 flex flex-col min-h-screen">
 
-    <!-- ================= AUTH SCREEN (VIDEO BACKGROUND) ================= -->
-    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden">
+    <!-- ================= AUTH SCREEN (VIDEO BACKGROUND LOCAL) ================= -->
+    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden auth-bg">
         
         <!-- 1. VIDEO BACKGROUND -->
-        <!-- Ganti 'src' dengan link video Anda sendiri jika ada -->
+        <!-- Pastikan file video bernama 'gucci-video.mp4' ada di folder yang sama -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-            <source src="https://videos.pexels.com/video-files/7653594/7653594-uhd_2560_1440_25fps.mp4" type="video/mp4">
+            <source src="gucci-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
-        <!-- 2. OVERLAY (Agar video agak gelap, supaya form terbaca) -->
-        <div class="absolute inset-0 bg-black/40"></div>
+        <!-- 2. OVERLAY (Hitam Transparan agar form terlihat jelas) -->
+        <div class="absolute inset-0 bg-black/50"></div>
 
-        <!-- 3. FORM CONTAINER (Putih) -->
+        <!-- 3. FORM LOGIN/REGISTER -->
         <div class="bg-white w-full max-w-sm p-8 shadow-2xl relative z-10 animate-fadeIn border-t-4 border-gucci-gold">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-serif font-bold tracking-widest mb-2">GUCCI</h1>
                 <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500">Private Client Access</p>
             </div>
-            
-            <!-- REGISTER FORM -->
+            <!-- REGISTER -->
             <div id="register-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-4 text-center">Device Registration</h2>
                 <div class="bg-yellow-50 border border-yellow-200 p-3 mb-4 text-[10px] text-yellow-800">
@@ -76,8 +79,7 @@
                 </div>
                 <p class="text-[10px] text-center mt-4 text-gray-400">Has account? <span onclick="switchMode('login')" class="text-black font-bold cursor-pointer underline">Login</span></p>
             </div>
-
-            <!-- LOGIN FORM -->
+            <!-- LOGIN -->
             <div id="login-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-6 text-center">Welcome Back</h2>
                 <div class="space-y-4">
@@ -113,12 +115,12 @@
                         <span id="current-lang-label" class="text-sm font-semibold pt-0.5">ID</span>
                     </button>
 
-                    <!-- B. SHOPPING BAG -->
+                    <!-- B. SHOPPING BAG (LINK KE GUCCI.COM) -->
                     <a href="https://www.gucci.com" target="_blank" title="Visit Official Site" class="hover:opacity-60 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     </a>
 
-                    <!-- C. USER ICON -->
+                    <!-- C. USER ICON (DROPDOWN) -->
                     <div class="relative">
                         <button onclick="toggleUserMenu()" class="hover:opacity-60 transition-opacity pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -131,7 +133,7 @@
                         </div>
                     </div>
 
-                    <!-- D. MENU HAMBURGER -->
+                    <!-- D. MENU HAMBURGER (AGENDA) -->
                     <button onclick="openMenu()" class="hover:opacity-60 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
@@ -153,7 +155,7 @@
             <div id="product-list-view" class="animate-fadeIn">
                 <div class="text-center mb-8 mt-4">
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
-                        ✓ APPROVED
+                        ✓ APPROVED (VIEW ONLY)
                     </div>
 
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
@@ -374,19 +376,16 @@
 
             grid.innerHTML = '';
             items.forEach((item, index) => {
-                // LOGIC PROFIT 25% dan 50%
                 const isRecommended = item.recommended === true;
-                const benefitPercent = isRecommended ? 0.5 : 0.25; // 50% atau 25%
+                const benefitPercent = isRecommended ? 0.5 : 0.25; 
                 const profitAmount = Math.floor(item.price * (1 + benefitPercent));
                 
                 const buttonDisplay = isReadOnly ? 'hidden' : '';
                 const btnColorClass = isRecommended ? "bg-gucci-gold text-black hover:bg-black hover:text-white" : "bg-black text-white hover:opacity-80";
                 const selectText = t.selectBtn;
                 const btnText = isRecommended ? `${selectText} • Recommended` : selectText;
-                
                 const benefitText = isRecommended ? "50%" : "25%";
                 const benefitColor = isRecommended ? "text-green-700 font-bold" : "";
-
                 const badgeHtml = isRecommended ? `<div class="absolute top-0 right-0 z-20 bg-black text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1.5 shadow-md flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>Recommended</div>` : '';
 
                 const cardHTML = `
@@ -447,15 +446,9 @@
             const user = document.getElementById('display-username').innerText;
             const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            
-            // Logic Naik Level
             currentLevel++;
             localStorage.setItem('gucci_level', currentLevel);
-            
-            // Tanpa Alert - Langsung pindah
-            setTimeout(() => { 
-                loadLevel(currentLevel, false); 
-            }, 500);
+            setTimeout(() => { loadLevel(currentLevel, false); }, 500);
         }
 
         function showCompletionScreen() {
