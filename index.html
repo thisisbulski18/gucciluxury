@@ -126,7 +126,7 @@
                     <div class="max-w-md mx-auto px-4">
                         <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20%</h2>
                         
-                        <!-- DESKRIPSI BARU -->
+                        <!-- DESKRIPSI (TETAP INGGRIS) -->
                         <p id="agenda-desc" class="text-xs md:text-sm font-medium leading-relaxed text-gray-900 italic">
                             The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.
                         </p>
@@ -202,11 +202,14 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- TRANSLATIONS (6 Bahasa) ---
-        let currentLang = 'en'; // Default English
+        // Kalimat 'desc' semuanya diset ke Bahasa Inggris sesuai request
+        let currentLang = 'en'; 
+        const fixedDesc = "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.";
+
         const translations = {
             en: {
                 task: "TASK",
-                desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.",
+                desc: fixedDesc,
                 back: "Reselect",
                 confTitle: "Order Confirmation",
                 confSub: "Review your selection below",
@@ -216,7 +219,7 @@
             },
             id: {
                 task: "TUGAS",
-                desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.",
+                desc: fixedDesc,
                 back: "Pilih Ulang",
                 confTitle: "Konfirmasi Pesanan",
                 confSub: "Konfirmasi pilihan Anda di bawah",
@@ -226,7 +229,7 @@
             },
             my: {
                 task: "TUGASAN",
-                desc: "Kurasi House merangkumi wangian mewah untuk lelaki dan wanita, serta set hadiah kecantikan pereka.",
+                desc: fixedDesc,
                 back: "Pilih Semula",
                 confTitle: "Pengesahan Pesanan",
                 confSub: "Semak pilihan anda di bawah",
@@ -236,7 +239,7 @@
             },
             ru: {
                 task: "ЗАДАЧА",
-                desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.",
+                desc: fixedDesc,
                 back: "Выбрать снова",
                 confTitle: "Подтверждение",
                 confSub: "Проверьте ваш выбор ниже",
@@ -246,7 +249,7 @@
             },
             de: {
                 task: "AUFGABE",
-                desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.",
+                desc: fixedDesc,
                 back: "Neu auswählen",
                 confTitle: "Bestellbestätigung",
                 confSub: "Überprüfen Sie Ihre Auswahl",
@@ -256,7 +259,7 @@
             },
             nl: {
                 task: "TAAK",
-                desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.",
+                desc: fixedDesc,
                 back: "Opnieuw kiezen",
                 confTitle: "Bevestiging",
                 confSub: "Controleer uw selectie hieronder",
@@ -266,7 +269,7 @@
             }
         };
 
-        // --- AUTH LOGIC (1 Device 1 Account) ---
+        // --- AUTH LOGIC ---
         window.onload = function() { checkSession(); };
 
         function checkSession() {
@@ -336,7 +339,7 @@
         const img4 = "https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1758728705/857595_FAFUF_9870_001_085_0000_Light.jpg";
         const img5 = "https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1744218003/497985_AAE5F_1642_001_100_0000_Light.jpg";
 
-        const database = {
+          const database = {
             1: [ 
                 { name: "Gucci Half Horsebit Mini", price: 100000, img: img1 },
                 { name: "Gucci Flora Orchid Set", price: 300000, img: img2 },
@@ -385,7 +388,7 @@
             document.getElementById('agenda-title').innerText = `AGENDA ${level}`;
             document.getElementById('level-indicator').innerText = `${t.task} ${level}`;
             document.getElementById('benefit-title').innerText = level >= 3 ? "BENEFIT 30%" : "BENEFIT 20%";
-            document.getElementById('agenda-desc').innerText = t.desc; // Kalimat Baru
+            document.getElementById('agenda-desc').innerText = t.desc; // Ini akan selalu bahasa Inggris
             
             grid.innerHTML = '';
             items.forEach((item, index) => {
