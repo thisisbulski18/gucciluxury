@@ -31,8 +31,21 @@
             background-position: 0 0, 10px 10px;
         }
         
-        /* Modal Overlay Putih Penuh */
         .menu-overlay { background-color: rgba(255,255,255,0.98); }
+        
+        /* Dropdown User Style */
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 10px;
+            min-width: 150px;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .user-dropdown.active { display: block; }
     </style>
 </head>
 <body class="bg-white font-sans text-black selection:bg-gray-200 flex flex-col min-h-screen">
@@ -75,34 +88,55 @@
     <!-- ================= MAIN APP ================= -->
     <div id="main-app" class="hidden flex flex-col min-h-screen">
         
-        <!-- HEADER -->
-        <header class="bg-white sticky top-0 z-40 border-b border-gray-100">
-            <div class="flex items-center justify-between px-4 py-4 md:px-8 relative bg-white">
+        <!-- HEADER (SESUAI FORMAT GAMBAR) -->
+        <header class="bg-white sticky top-0 z-40">
+            <div class="flex items-center justify-between px-4 py-5 md:px-8 relative bg-white">
                 
-                <!-- MENU TOGGLE (KIRI) -->
-                <div class="flex items-center">
-                    <button onclick="openMenu()" class="p-2 hover:opacity-50 transition-opacity">
+                <!-- 1. LOGO (KIRI) -->
+                <div class="text-4xl font-serif font-bold text-black tracking-wide cursor-default select-none text-gucci-gold-dark">
+                    GUCCI
+                </div>
+                
+                <!-- 2. ICON GROUP (KANAN) -->
+                <div class="flex items-center gap-5 md:gap-6 text-black relative">
+                    
+                    <!-- A. GLOBE & BAHASA -->
+                    <button onclick="openLangModal()" class="flex items-center gap-1 hover:opacity-70 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span id="current-lang-label" class="text-sm font-medium pt-0.5">ID</span>
+                    </button>
+
+                    <!-- B. SHOPPING BAG (LINK KE GUCCI.COM) -->
+                    <a href="https://www.gucci.com" target="_blank" title="Go to Gucci.com" class="hover:opacity-70 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    </a>
+
+                    <!-- C. USER ICON (DROPDOWN) -->
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="hover:opacity-70 transition-opacity pt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </button>
+                        <!-- User Dropdown -->
+                        <div id="user-menu-dropdown" class="user-dropdown z-50">
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Logged in as:</div>
+                            <div class="text-sm font-bold mb-3 truncate" id="display-username">USER</div>
+                            <button onclick="logout()" class="w-full text-left text-[10px] font-bold uppercase tracking-widest text-red-600 hover:bg-gray-50 py-2">LOGOUT</button>
+                        </div>
+                    </div>
+
+                    <!-- D. HAMBURGER MENU (AGENDA) -->
+                    <button onclick="openMenu()" class="hover:opacity-70 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
-                </div>
 
-                <!-- LOGO (TENGAH) -->
-                <div class="text-3xl tracking-[0.2em] font-serif font-bold text-black cursor-default select-none absolute left-1/2 transform -translate-x-1/2">GUCCI</div>
-                
-                <!-- KANAN (LANG & LINK) -->
-                <div class="flex items-center space-x-4 text-black">
-                    <a href="https://www.gucci.com" target="_blank" class="hidden md:block text-[9px] font-bold uppercase tracking-widest border border-gray-300 px-3 py-1 hover:bg-black hover:text-white transition-all">GUCCI.COM</a>
-                    
-                    <button onclick="openLangModal()" class="hover:text-gucci-gold transition-colors flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        <span id="current-lang-label" class="text-[9px] font-bold">EN</span>
-                    </button>
                 </div>
             </div>
-            <!-- Sub Header Mobile -->
-            <div class="md:hidden border-t border-gray-100 py-1 flex justify-center bg-gray-50">
-                <span class="text-[9px] font-bold uppercase tracking-widest text-gucci-gold mr-2">HI, <span id="display-username">USER</span></span> |
-                <button onclick="logout()" class="text-[9px] text-gray-400 hover:text-red-600 ml-2">LOGOUT</button>
+            
+            <!-- Indikator Tugas (Sticky di bawah header) -->
+            <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
+                <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
+                    TUGAS 1
+                </div>
             </div>
         </header>
 
@@ -113,12 +147,12 @@
                 <div class="text-center mb-8 mt-4">
                     <!-- Status Banner jika Mode Read Only -->
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
-                        ✓ APPROVED
+                        ✓ APPROVED (VIEW ONLY)
                     </div>
 
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
                     <div class="max-w-md mx-auto px-4">
-                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20%</h2>
+                        <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 20% - 50%</h2>
                         <p id="agenda-desc" class="text-xs md:text-sm font-medium leading-relaxed text-gray-900 italic">
                             The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.
                         </p>
@@ -175,20 +209,13 @@
         </footer>
     </div>
 
-    <!-- ==================== MENU MODAL (AGENDA SELECTOR) ==================== -->
+    <!-- ==================== MENU MODAL ==================== -->
     <div id="agenda-menu" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center menu-overlay animate-fadeIn">
-        
-        <!-- Close Button -->
         <button onclick="closeMenu()" class="absolute top-6 right-6 p-2 hover:opacity-50 transition-opacity">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
-
         <h2 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-10">PILIH AGENDA</h2>
-
-        <div id="menu-list" class="flex flex-col items-center space-y-6">
-            <!-- Isi menu akan digenerate oleh Javascript -->
-        </div>
-
+        <div id="menu-list" class="flex flex-col items-center space-y-6"></div>
         <div class="mt-12 border-t border-gray-200 w-12"></div>
         <p class="mt-4 text-[10px] font-bold uppercase tracking-widest text-black">COLLECTIONS</p>
     </div>
@@ -212,7 +239,7 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- TRANSLATIONS ---
-        let currentLang = 'en'; 
+        let currentLang = 'id'; // Default to ID based on screenshot
         const translations = {
             en: { task: "TASK", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Reselect", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next TASK...", selectBtn: "Select" },
             id: { task: "TUGAS", desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.", back: "Pilih Ulang", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke TUGAS berikutnya...", selectBtn: "Pilih" },
@@ -226,7 +253,6 @@
         window.onload = function() { checkSession(); };
         function checkSession() {
             const storedUser = localStorage.getItem('gucci_user');
-            // Cek progres level user
             const savedLevel = localStorage.getItem('gucci_level');
             if(savedLevel) currentLevel = parseInt(savedLevel);
 
@@ -248,7 +274,7 @@
             const pass = document.getElementById('reg-password').value;
             if(!user || !pass) { alert("Please fill all fields"); return; }
             localStorage.setItem('gucci_user', JSON.stringify({ username: user, password: pass }));
-            localStorage.setItem('gucci_level', 1); // Set level awal
+            localStorage.setItem('gucci_level', 1);
             alert("Registered! Please Login."); checkSession();
         }
         function handleLogin() {
@@ -266,7 +292,16 @@
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-app').classList.remove('hidden');
             document.getElementById('display-username').innerText = username;
-            loadLevel(currentLevel, false); // Default load normal
+            loadLevel(currentLevel, false);
+        }
+        
+        function toggleUserMenu() {
+            const menu = document.getElementById('user-menu-dropdown');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {
+                menu.classList.add('active');
+            }
         }
 
         // --- CORE ---
@@ -276,7 +311,7 @@
         const img4 = "https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1758728705/857595_FAFUF_9870_001_085_0000_Light.jpg";
         const img5 = "https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1744218003/497985_AAE5F_1642_001_100_0000_Light.jpg";
 
-           const database = {
+   const database = {
             1: [ 
                 { name: "Gucci Half Horsebit Mini", price: 100000, img: img1 },
                 { name: "Gucci Flora Orchid Set", price: 300000, img: img2 },
@@ -317,39 +352,23 @@
         // --- RENDER MENU MODAL ---
         function openMenu() {
             const menuList = document.getElementById('menu-list');
+            const t = translations[currentLang];
             menuList.innerHTML = '';
-            
-            // Loop 1 sampai 5
             for (let i = 1; i <= maxLevel; i++) {
                 let itemHTML = '';
-
                 if (i < currentLevel) {
-                    // PAST (APPROVED & READ ONLY)
                     itemHTML = `
                         <div class="flex items-center gap-4 cursor-pointer" onclick="goToLevel(${i}, true)">
                             <span class="font-serif text-xl text-gray-400">AGENDA ${i}</span>
-                            <span class="bg-green-100 text-green-800 text-[9px] font-bold uppercase tracking-widest px-2 py-1 flex items-center gap-1 rounded-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                APPROVED
-                            </span>
+                            <span class="bg-green-100 text-green-800 text-[9px] font-bold uppercase tracking-widest px-2 py-1 flex items-center gap-1 rounded-sm"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>APPROVED</span>
                         </div>`;
                 } else if (i === currentLevel) {
-                    // CURRENT (ACTIVE)
-                    itemHTML = `
-                        <div class="cursor-pointer border-b-2 border-black pb-1" onclick="goToLevel(${i}, false)">
-                            <span class="font-serif text-2xl font-bold text-black tracking-wide">AGENDA ${i}</span>
-                        </div>`;
+                    itemHTML = `<div class="cursor-pointer border-b-2 border-black pb-1" onclick="goToLevel(${i}, false)"><span class="font-serif text-2xl font-bold text-black tracking-wide">AGENDA ${i}</span></div>`;
                 } else {
-                    // FUTURE (LOCKED)
-                    itemHTML = `
-                        <div class="flex items-center gap-2 text-gray-300 cursor-not-allowed">
-                            <span class="font-serif text-xl tracking-wide">AGENDA ${i}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>`;
+                    itemHTML = `<div class="flex items-center gap-2 text-gray-300 cursor-not-allowed"><span class="font-serif text-xl tracking-wide">AGENDA ${i}</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>`;
                 }
                 menuList.innerHTML += itemHTML;
             }
-
             document.getElementById('agenda-menu').classList.remove('hidden');
         }
 
@@ -362,7 +381,7 @@
             loadLevel(level, isReadOnly);
         }
 
-        // --- LOAD LEVEL (Modified for ReadOnly) ---
+        // --- LOAD LEVEL ---
         function loadLevel(level, isReadOnly) {
             if (level > maxLevel) { showCompletionScreen(); return; }
             
@@ -372,7 +391,8 @@
             
             // Text
             document.getElementById('agenda-title').innerText = `AGENDA ${level}`;
-            document.getElementById('benefit-title').innerText = level >= 3 ? "BENEFIT 30%" : "BENEFIT 20%";
+            document.getElementById('level-indicator').innerText = `${t.task} ${level}`;
+            document.getElementById('benefit-title').innerText = "BENEFIT 20% - 50%"; // Judul Umum
             document.getElementById('agenda-desc').innerText = t.desc;
             
             // Handle ReadOnly Banner
@@ -387,12 +407,10 @@
 
             grid.innerHTML = '';
             items.forEach((item, index) => {
-                const benefitPercent = level >= 3 ? 0.3 : 0.2;
+                const benefitPercent = item.recommended ? 0.5 : 0.2;
                 const profitAmount = Math.floor(item.price * (1 + benefitPercent));
                 
-                // Jika ReadOnly, TOMBOL HILANG (Hidden). Jika tidak, tampilkan tombol.
                 const buttonDisplay = isReadOnly ? 'hidden' : '';
-                
                 const btnColorClass = item.recommended ? "bg-gucci-gold text-black hover:bg-black hover:text-white" : "bg-black text-white hover:opacity-80";
                 const selectText = t.selectBtn;
                 const btnText = item.recommended ? `${selectText} • Recommended` : selectText;
@@ -454,11 +472,8 @@
             const user = document.getElementById('display-username').innerText;
             const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            
-            // Simpan level baru ke LocalStorage
             currentLevel++;
             localStorage.setItem('gucci_level', currentLevel);
-            
             setTimeout(() => { alert(t.alertConf); loadLevel(currentLevel, false); }, 1000);
         }
 
