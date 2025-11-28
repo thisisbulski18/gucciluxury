@@ -264,7 +264,7 @@
 
             if (storedUser) {
                 switchMode('login');
-                document.getElementById('reg-link-container').innerHTML = "<span class='text-black-500 font-bold'>Make Your Own Business</span>";
+                document.getElementById('reg-link-container').innerHTML = "<span class='text-black-500 font-bold'>The bags under my eyes are Gucci.</span>";
                 const session = localStorage.getItem('gucci_session');
                 if(session === 'active') showMainApp(JSON.parse(storedUser).username);
             } else { switchMode('register'); }
