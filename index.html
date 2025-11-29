@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gucci Agenda - Private Access</title>
+    <title>Gucci Agenda - Private Client</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -21,12 +21,8 @@
     </script>
     <style>
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
+        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
         .hidden { display: none !important; }
-        
-        .auth-bg {
-            background-color: #000; /* Fallback color jika video belum load */
-        }
         
         .menu-overlay { background-color: rgba(255,255,255,0.98); }
         
@@ -43,24 +39,29 @@
             z-index: 50;
         }
         .user-dropdown.active { display: block; }
+
+        #auth-screen video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="bg-white font-sans text-black selection:bg-gray-200 flex flex-col min-h-screen">
 
-    <!-- ================= AUTH SCREEN (VIDEO BACKGROUND LOCAL) ================= -->
-    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden auth-bg">
-        
-        <!-- 1. VIDEO BACKGROUND -->
-        <!-- Pastikan file video bernama 'gucci-video.mp4' ada di folder yang sama -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-            <source src="gucci-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+    <!-- ================= AUTH SCREEN ================= -->
+    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden bg-black">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1548624268-80f4cb661c94?q=80&w=2070&auto=format&fit=crop">
+            <source src="https://videos.pexels.com/video-files/7653676/7653676-hd_1920_1080_25fps.mp4" type="video/mp4">
         </video>
-
-        <!-- 2. OVERLAY (Hitam Transparan agar form terlihat jelas) -->
-        <div class="absolute inset-0 bg-black/50"></div>
-
-        <!-- 3. FORM LOGIN/REGISTER -->
+        <div class="absolute inset-0 bg-black/60"></div>
         <div class="bg-white w-full max-w-sm p-8 shadow-2xl relative z-10 animate-fadeIn border-t-4 border-gucci-gold">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-serif font-bold tracking-widest mb-2">GUCCI</h1>
@@ -96,31 +97,17 @@
 
     <!-- ================= MAIN APP ================= -->
     <div id="main-app" class="hidden flex flex-col min-h-screen">
-        
-        <!-- HEADER -->
         <header class="bg-white sticky top-0 z-40 border-b border-gray-100">
             <div class="flex items-center justify-between px-4 py-6 md:px-8 relative bg-white">
-                
-                <!-- 1. LOGO (KIRI) -->
-                <div class="text-3xl md:text-4xl font-serif font-bold text-black tracking-[0.1em] cursor-default select-none text-gucci-gold-dark">
-                    GUCCI
-                </div>
-                
-                <!-- 2. ICON GROUP (KANAN) -->
+                <div class="text-3xl md:text-4xl font-serif font-bold text-black tracking-[0.1em] cursor-default select-none text-gucci-gold-dark">GUCCI</div>
                 <div class="flex items-center gap-5 md:gap-7 text-black relative">
-                    
-                    <!-- A. GLOBE & BAHASA -->
                     <button onclick="openLangModal()" class="flex items-center gap-1 hover:opacity-60 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                         <span id="current-lang-label" class="text-sm font-semibold pt-0.5">ID</span>
                     </button>
-
-                    <!-- B. SHOPPING BAG (LINK KE GUCCI.COM) -->
                     <a href="https://www.gucci.com" target="_blank" title="Visit Official Site" class="hover:opacity-60 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     </a>
-
-                    <!-- C. USER ICON (DROPDOWN) -->
                     <div class="relative">
                         <button onclick="toggleUserMenu()" class="hover:opacity-60 transition-opacity pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -132,16 +119,11 @@
                             <button onclick="logout()" class="w-full text-left text-[10px] font-bold uppercase tracking-widest text-red-600 hover:text-red-800">LOGOUT</button>
                         </div>
                     </div>
-
-                    <!-- D. MENU HAMBURGER (AGENDA) -->
                     <button onclick="openMenu()" class="hover:opacity-60 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
-
                 </div>
             </div>
-            
-            <!-- Indikator Agenda -->
             <div class="border-t border-gray-100 py-2 bg-white flex justify-center">
                 <div id="level-indicator" class="text-[10px] font-bold border border-black px-3 py-0.5 rounded-full uppercase tracking-widest">
                     AGENDA 1
@@ -157,7 +139,6 @@
                     <div id="read-only-banner" class="hidden mb-4 inline-block bg-green-50 text-green-800 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-green-200">
                         ✓ APPROVED
                     </div>
-
                     <h1 id="agenda-title" class="text-2xl font-bold font-serif tracking-widest mb-6 uppercase">AGENDA 1</h1>
                     <div class="max-w-md mx-auto px-4">
                         <h2 id="benefit-title" class="text-xl font-bold uppercase tracking-widest mb-2 text-black">BENEFIT 25% - 50%</h2>
@@ -166,11 +147,10 @@
                         </p>
                     </div>
                 </div>
-
                 <div id="product-grid" class="grid grid-cols-2 gap-x-3 gap-y-8 md:gap-x-8 md:gap-y-12 pb-12"></div>
             </div>
 
-            <!-- VIEW: KONFIRMASI -->
+            <!-- VIEW: KONFIRMASI & FORM PEMBAYARAN -->
             <div id="confirmation-view" class="hidden animate-fadeIn pb-12">
                 <div class="mb-8 mt-2">
                     <button onclick="goBack()" class="flex items-center text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-black transition-colors">
@@ -178,11 +158,14 @@
                         <span id="text-back">Reselect</span>
                     </button>
                 </div>
+
                 <div class="text-center mb-8">
                     <h2 id="text-conf-title" class="text-2xl font-serif font-bold uppercase tracking-widest mb-2">Order Confirmation</h2>
                     <p id="text-conf-subtitle" class="text-xs text-gray-500">Review your selection</p>
                 </div>
+
                 <div class="bg-gray-50 p-4 md:p-8 max-w-md mx-auto rounded-sm">
+                    <!-- Product Info -->
                     <div class="bg-white p-6 mb-6 relative flex justify-center items-center aspect-square shadow-sm">
                         <div class="absolute top-0 left-0 bg-black text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5">Selected</div>
                         <img id="conf-img" src="" class="w-full h-full object-contain mix-blend-multiply">
@@ -196,7 +179,39 @@
                     <div class="border-t border-gray-200 my-4"></div>
                     <div class="flex justify-between items-center mb-8"><span class="text-sm font-bold uppercase tracking-widest">Total Profit</span><span id="conf-profit" class="text-sm font-bold">IDR 0</span></div>
                     
-                    <button onclick="confirmAndProgress()" class="w-full bg-black text-white text-[11px] font-bold uppercase tracking-[0.2em] py-4 hover:opacity-80 transition-all flex justify-center items-center gap-2">
+                    <!-- ============================================== -->
+                    <!-- INFO REKENING ADMIN (TUJUAN TRANSFER) -->
+                    <!-- ============================================== -->
+                    <div class="bg-yellow-50 border border-yellow-200 p-6 text-center mb-8 shadow-sm">
+                        <p id="text-transfer-label" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">Please Transfer To</p>
+                        
+                        <!-- GANTI DATA DI BAWAH INI SESUAI REKENING ANDA -->
+                        <div class="font-bold text-sm tracking-wide">BANK BCA</div>
+                        <div class="text-2xl font-serif font-bold text-gucci-gold my-1 tracking-widest">1234 5678 90</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-black">A.N. ADMIN GUCCI</div>
+                        <!-- ========================================== -->
+                    </div>
+
+                    <!-- FORM DATA PEMBELI -->
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h3 id="text-pay-title" class="text-xs font-bold uppercase tracking-widest mb-4 text-center text-black">Your Payment Details</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label id="label-bank" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Bank Name (Sender)</label>
+                                <input type="text" id="pay-bank" class="w-full border-b border-black py-2 text-sm bg-transparent focus:outline-none focus:border-gucci-gold" placeholder="Ex: BCA, Mandiri">
+                            </div>
+                            <div>
+                                <label id="label-rek" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Account Number (Sender)</label>
+                                <input type="number" id="pay-number" class="w-full border-b border-black py-2 text-sm bg-transparent focus:outline-none focus:border-gucci-gold" placeholder="Ex: 1234567890">
+                            </div>
+                            <div>
+                                <label id="label-name" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Account Holder Name</label>
+                                <input type="text" id="pay-name" class="w-full border-b border-black py-2 text-sm bg-transparent focus:outline-none focus:border-gucci-gold" placeholder="Ex: Budi Santoso">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="confirmAndProgress()" class="w-full bg-black text-white text-[11px] font-bold uppercase tracking-[0.2em] py-4 mt-8 hover:opacity-80 transition-all flex justify-center items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         <span id="text-confirm-btn">CONFIRM ORDER</span>
                     </button>
@@ -208,7 +223,7 @@
                  <div class="mb-6 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gucci-gold"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
                  <h2 class="text-3xl font-serif font-bold uppercase tracking-widest mb-4">COMPLETED</h2>
                  <p class="max-w-md mx-auto text-sm text-gray-600 mb-8 px-4">All tasks finished.</p>
-                 <button onclick="window.open('https://wa.me/628123456789', '_blank')" class="bg-gucci-gold text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">Contact Admin</button>
+                 <button onclick="window.open('https://wa.me/6285371931874', '_blank')" class="bg-gucci-gold text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">Contact Admin</button>
             </div>
         </main>
 
@@ -244,16 +259,33 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
         let currentLang = 'id'; 
         const translations = {
-            en: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select" },
-            id: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih" },
-            my: { task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih" },
-            ru: { task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать" },
-            de: { task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen" },
-            nl: { task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer" }
+            en: { 
+                task: "AGENDA", desc: "The House's curation includes fine fragrances for men and women, as well as designer beauty gift sets.", back: "Back to agenda", confTitle: "Order Confirmation", confSub: "Review your selection below", btnConf: "CONFIRM ORDER", alertConf: "Confirmation Successful! Proceeding to next AGENDA...", selectBtn: "Select",
+                transferLabel: "Please Transfer To", payTitle: "Your Payment Details", bank: "Bank Name", rek: "Account Number", name: "Account Holder Name"
+            },
+            id: { 
+                task: "AGENDA", desc: "Kurasi House mencakup wewangian mewah untuk pria dan wanita, serta set hadiah kecantikan desainer.", back: "Kembali ke agenda", confTitle: "Konfirmasi Pesanan", confSub: "Konfirmasi pilihan Anda di bawah", btnConf: "KONFIRMASI PESANAN", alertConf: "Konfirmasi Berhasil! Melanjutkan ke AGENDA berikutnya...", selectBtn: "Pilih",
+                transferLabel: "Silakan Transfer Ke", payTitle: "Detail Pembayaran Anda", bank: "Nama Bank", rek: "Nomor Rekening", name: "Atas Nama"
+            },
+            my: { 
+                task: "AGENDA", desc: "Kurasi House merangkumi wangian mewah untuk lelaki dan wanita, serta set hadiah kecantikan pereka.", back: "Kembali ke agenda", confTitle: "Pengesahan Pesanan", confSub: "Semak pilihan anda di bawah", btnConf: "SAHKAN PESANAN", alertConf: "Pengesahan Berjaya! Meneruskan ke AGENDA seterusnya...", selectBtn: "Pilih",
+                transferLabel: "Sila Pindahkan Ke", payTitle: "Butiran Pembayaran Anda", bank: "Nama Bank", rek: "Nomor Akaun", name: "Pemegang Akaun"
+            },
+            ru: { 
+                task: "AGENDA", desc: "В подборку Дома входят изысканные ароматы для мужчин и женщин, а также дизайнерские подарочные наборы.", back: "Выбрать снова", confTitle: "Подтверждение", confSub: "Проверьте ваш выбор ниже", btnConf: "ПОДТВЕРДИТЬ", alertConf: "Подтверждение успешно! Переход к следующей AGENDA...", selectBtn: "Выбрать",
+                transferLabel: "Пожалуйста, переведите на", payTitle: "Ваши платежные данные", bank: "Название банка", rek: "Номер счета", name: "Имя владельца"
+            },
+            de: { 
+                task: "AGENDA", desc: "Die Kuration des Hauses umfasst feine Düfte für Männer und Frauen sowie Designer-Schönheitsgeschenksets.", back: "Neu auswählen", confTitle: "Bestellbestätigung", confSub: "Überprüfen Sie Ihre Auswahl", btnConf: "BESTÄTIGEN", alertConf: "Bestätigung erfolgreich! Weiter zur nächsten AGENDA...", selectBtn: "Auswählen",
+                transferLabel: "Bitte überweisen an", payTitle: "Ihre Zahlungsdetails", bank: "Bankname", rek: "Kontonummer", name: "Kontoinhaber"
+            },
+            nl: { 
+                task: "AGENDA", desc: "De curatie van het Huis omvat fijne geuren voor mannen en vrouwen, evenals designer schoonheidscadeausets.", back: "Opnieuw kiezen", confTitle: "Bevestiging", confSub: "Controleer uw selectie hieronder", btnConf: "BEVESTIG BESTELLING", alertConf: "Bevestiging succesvol! Doorgaan naar volgende AGENDA...", selectBtn: "Selecteer",
+                transferLabel: "Maak over naar", payTitle: "Uw betalingsdetails", bank: "Banknaam", rek: "Rekeningnummer", name: "Naam rekeninghouder"
+            }
         };
 
         window.onload = function() { checkSession(); };
@@ -303,11 +335,7 @@
         
         function toggleUserMenu() {
             const menu = document.getElementById('user-menu-dropdown');
-            if (menu.classList.contains('active')) {
-                menu.classList.remove('active');
-            } else {
-                menu.classList.add('active');
-            }
+            menu.classList.toggle('active');
         }
 
         const img1 = "https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1758137467/860787_AAEE7_7702_001_100_0000_Light.jpg";
@@ -430,6 +458,19 @@
             if(benefit === "50%") confBenefitEl.className = "text-green-700 font-bold"; else confBenefitEl.className = "font-bold";
             document.getElementById('conf-profit').innerText = 'IDR ' + profit;
             document.getElementById('conf-img').src = imgUrl;
+
+            // Form Labels Translation
+            document.getElementById('text-transfer-label').innerText = t.transferLabel;
+            document.getElementById('text-pay-title').innerText = t.payTitle;
+            document.getElementById('label-bank').innerText = t.bank;
+            document.getElementById('label-rek').innerText = t.rek;
+            document.getElementById('label-name').innerText = t.name;
+
+            // Clear Input Form
+            document.getElementById('pay-bank').value = '';
+            document.getElementById('pay-number').value = '';
+            document.getElementById('pay-name').value = '';
+
             document.getElementById('product-list-view').classList.add('hidden');
             document.getElementById('confirmation-view').classList.remove('hidden');
             window.scrollTo(0, 0);
@@ -441,10 +482,31 @@
         }
 
         function confirmAndProgress() {
+            // Get Payment Form Values
+            const bank = document.getElementById('pay-bank').value;
+            const number = document.getElementById('pay-number').value;
+            const holder = document.getElementById('pay-name').value;
+
+            // Simple validation
+            if(!bank || !number || !holder) {
+                alert("Please fill in all payment details.");
+                return;
+            }
+
             const phoneNumber = "6285371931874"; 
             const t = translations[currentLang];
             const user = document.getElementById('display-username').innerText;
-            const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n🛍️ Produk: ${currentProduct.name}\n💰 Harga: IDR ${currentProduct.price}\n✅ Total Profit: IDR ${currentProduct.profit}\n\nMohon diproses.`;
+            
+            const message = `Halo Admin, saya *${user}* konfirmasi pesanan dari *${t.task} ${currentLevel}*:\n\n` +
+                            `🛍️ Produk: ${currentProduct.name}\n` +
+                            `💰 Harga: IDR ${currentProduct.price}\n` +
+                            `✅ Total Profit: IDR ${currentProduct.profit}\n\n` +
+                            `*Data Pembayaran (Pengirim):*\n` +
+                            `🏦 Bank: ${bank}\n` +
+                            `💳 No. Rek: ${number}\n` +
+                            `👤 A.N: ${holder}\n\n` +
+                            `Mohon diproses.`;
+
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
             currentLevel++;
             localStorage.setItem('gucci_level', currentLevel);
