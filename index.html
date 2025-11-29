@@ -179,17 +179,14 @@
                     <div class="border-t border-gray-200 my-4"></div>
                     <div class="flex justify-between items-center mb-8"><span class="text-sm font-bold uppercase tracking-widest">Total Profit</span><span id="conf-profit" class="text-sm font-bold">IDR 0</span></div>
                     
-                    <!-- ============================================== -->
-                    <!-- INFO REKENING ADMIN (TUJUAN TRANSFER) -->
-                    <!-- ============================================== -->
+                    <!-- INFO REKENING ADMIN -->
                     <div class="bg-yellow-50 border border-yellow-200 p-6 text-center mb-8 shadow-sm">
                         <p id="text-transfer-label" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">Please Transfer To</p>
                         
-                        <!-- GANTI DATA DI BAWAH INI SESUAI REKENING ANDA -->
+                        <!-- GANTI DATA REKENING DI SINI JIKA PERLU -->
                         <div class="font-bold text-sm tracking-wide">BANK BCA</div>
                         <div class="text-2xl font-serif font-bold text-gucci-gold my-1 tracking-widest">1234 5678 90</div>
                         <div class="text-[10px] font-bold uppercase tracking-widest text-black">A.N. ADMIN GUCCI</div>
-                        <!-- ========================================== -->
                     </div>
 
                     <!-- FORM DATA PEMBELI -->
@@ -493,7 +490,18 @@
                 return;
             }
 
-            const phoneNumber = "6285371931874"; 
+            // --- KONFIGURASI NOMOR WHATSAPP ---
+            const numberAgenda1 = "6282255755255"; // Ganti dengan Nomor untuk Agenda 1
+            const numberAgenda2Plus = "6285371931874"; // Nomor untuk Agenda 2 sd 5
+
+            // Tentukan nomor berdasarkan level saat ini
+            let phoneNumber;
+            if (currentLevel === 1) {
+                phoneNumber = numberAgenda1;
+            } else {
+                phoneNumber = numberAgenda2Plus;
+            }
+
             const t = translations[currentLang];
             const user = document.getElementById('display-username').innerText;
             
