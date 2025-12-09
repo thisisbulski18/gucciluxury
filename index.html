@@ -40,6 +40,12 @@
         }
         .user-dropdown.active { display: block; }
 
+        /* --- CSS KHUSUS VIDEO BACKGROUND --- */
+        #auth-screen {
+            position: fixed;
+            overflow: hidden; /* Mencegah scrollbar */
+        }
+
         #auth-screen video {
             position: absolute;
             top: 50%;
@@ -48,25 +54,35 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
+            z-index: -1; /* Di belakang layar */
+            transform: translateX(-50%) translateY(-50%); /* Sentering video */
             object-fit: cover;
         }
     </style>
 </head>
 <body class="bg-white font-sans text-black selection:bg-gray-200 flex flex-col min-h-screen">
 
-    <!-- ================= AUTH SCREEN ================= -->
-    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden bg-black">
+    <!-- ================= AUTH SCREEN (VIDEO BACKGROUND) ================= -->
+    <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 bg-black">
+        
+        <!-- 1. VIDEO ELEMENT -->
+        <!-- Video Fashion Runway Slow Motion -->
         <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1548624268-80f4cb661c94?q=80&w=2070&auto=format&fit=crop">
             <source src="https://videos.pexels.com/video-files/7653676/7653676-hd_1920_1080_25fps.mp4" type="video/mp4">
+            <!-- Alternatif Link Video jika yang atas tidak load -->
+            <!-- <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-the-catwalk-39878-large.mp4" type="video/mp4"> -->
         </video>
-        <div class="absolute inset-0 bg-black/60"></div>
+
+        <!-- 2. OVERLAY HITAM (Agar teks terbaca) -->
+        <div class="absolute inset-0 bg-black/60 z-0"></div>
+
+        <!-- 3. FORM LOGIN (Z-Index Tinggi) -->
         <div class="bg-white w-full max-w-sm p-8 shadow-2xl relative z-10 animate-fadeIn border-t-4 border-gucci-gold">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-serif font-bold tracking-widest mb-2">GUCCI</h1>
                 <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500">Private Client Access</p>
             </div>
+
             <!-- REGISTER -->
             <div id="register-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-4 text-center">Registration Form</h2>
@@ -80,6 +96,7 @@
                 </div>
                 <p class="text-[10px] text-center mt-4 text-gray-400">Has account? <span onclick="switchMode('login')" class="text-black font-bold cursor-pointer underline">Login</span></p>
             </div>
+
             <!-- LOGIN -->
             <div id="login-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-6 text-center">Welcome To Gucci</h2>
@@ -182,8 +199,6 @@
                     <!-- INFO REKENING ADMIN -->
                     <div class="bg-yellow-50 border border-yellow-200 p-6 text-center mb-8 shadow-sm">
                         <p id="text-transfer-label" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">Please Transfer To</p>
-                        
-                        <!-- GANTI DATA REKENING DI SINI JIKA PERLU -->
                         <div class="font-bold text-sm tracking-wide">BANK JAGO</div>
                         <div class="text-2xl font-serif font-bold text-gucci-gold my-1 tracking-widest">1025 9972 2998</div>
                         <div class="text-[10px] font-bold uppercase tracking-widest text-black">A.N. MUHAMMAD RISZKI</div>
