@@ -40,6 +40,7 @@
         }
         .user-dropdown.active { display: block; }
 
+        /* --- STYLE KHUSUS VIDEO BACKGROUND --- */
         #auth-screen video {
             position: absolute;
             top: 50%;
@@ -56,18 +57,27 @@
 </head>
 <body class="bg-white font-sans text-black selection:bg-gray-200 flex flex-col min-h-screen">
 
-    <!-- ================= AUTH SCREEN ================= -->
+    <!-- ================= AUTH SCREEN DENGAN VIDEO ================= -->
     <div id="auth-screen" class="fixed inset-0 z-[60] flex items-center justify-center px-4 overflow-hidden bg-black">
+        
+        <!-- 1. VIDEO BACKGROUND -->
+        <!-- Saya menggunakan video fashion abstrak yang elegan -->
         <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1548624268-80f4cb661c94?q=80&w=2070&auto=format&fit=crop">
             <source src="https://videos.pexels.com/video-files/7653676/7653676-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
         </video>
+
+        <!-- 2. OVERLAY HITAM (Agar tulisan terbaca) -->
         <div class="absolute inset-0 bg-black/60"></div>
+
+        <!-- 3. KOTAK LOGIN -->
         <div class="bg-white w-full max-w-sm p-8 shadow-2xl relative z-10 animate-fadeIn border-t-4 border-gucci-gold">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-serif font-bold tracking-widest mb-2">GUCCI</h1>
                 <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500">Private Client Access</p>
             </div>
-            <!-- REGISTER -->
+            
+            <!-- REGISTER FORM -->
             <div id="register-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-4 text-center">Registration Form</h2>
                 <div class="bg-yellow-50 border border-yellow-200 p-3 mb-4 text-[10px] text-yellow-800">
@@ -80,7 +90,8 @@
                 </div>
                 <p class="text-[10px] text-center mt-4 text-gray-400">Has account? <span onclick="switchMode('login')" class="text-black font-bold cursor-pointer underline">Login</span></p>
             </div>
-            <!-- LOGIN -->
+            
+            <!-- LOGIN FORM -->
             <div id="login-form" class="hidden">
                 <h2 class="text-sm font-bold uppercase tracking-widest mb-6 text-center">Welcome To Gucci</h2>
                 <div class="space-y-4">
@@ -220,7 +231,7 @@
                  <div class="mb-6 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gucci-gold"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
                  <h2 class="text-3xl font-serif font-bold uppercase tracking-widest mb-4">COMPLETED</h2>
                  <p class="max-w-md mx-auto text-sm text-gray-600 mb-8 px-4">All tasks finished.</p>
-                 <button onclick="window.open('https://wa.me/6285371931874', '_blank')" class="bg-gucci-gold text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">Contact Admin</button>
+                 <button onclick="window.open('https://wa.me/6285713176052', '_blank')" class="bg-gucci-gold text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">Contact Admin</button>
             </div>
         </main>
 
@@ -491,7 +502,7 @@
             }
 
             // --- KONFIGURASI NOMOR WHATSAPP ---
-            const numberAgenda1 = "6285713173417"; // Ganti dengan Nomor untuk Agenda 1
+            const numberAgenda1 = "6285713173417"; // Nomor untuk Agenda 1
             const numberAgenda2Plus = "6285713176052"; // Nomor untuk Agenda 2 sd 5
 
             // Tentukan nomor berdasarkan level saat ini
